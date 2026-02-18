@@ -2,6 +2,7 @@ package com.example.proyectomaquinaria.presentation.auth
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectomaquinaria.databinding.ActivityUserTypeSelectionBinding
@@ -31,16 +32,25 @@ class UserTypeSelectionActivity : AppCompatActivity() {
 
     private fun setupListeners() {
         binding.cardCliente.setOnClickListener {
+            Log.d("UserTypeSelection", "Cliente card clicked")
             crearPerfil(TipoUsuario.CLIENTE)
         }
 
         binding.cardProveedor.setOnClickListener {
+            Log.d("UserTypeSelection", "Proveedor card clicked")
             crearPerfil(TipoUsuario.PROVEEDOR)
         }
     }
 
     private fun crearPerfil(tipoUsuario: TipoUsuario) {
-        val currentUser = auth.currentUser ?: return
+        val currentUser = auth.currentUser
+
+        if (currentUser == null) {
+            Toast.makeText(this, "Error: No hay usuario autenticado", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        Log.d("UserTypeSelection", "Creating profile for: ${currentUser.email} as $tipoUsuario")
 
         val user = User(
             uid = currentUser.uid,
@@ -48,31 +58,38 @@ class UserTypeSelectionActivity : AppCompatActivity() {
             tipoUsuario = tipoUsuario
         )
 
+        // Mostrar loading
+        Toast.makeText(this, "Guardando perfil...", Toast.LENGTH_SHORT).show()
+
+        // Guardar en Firestore
         firestore.collection("users")
             .document(currentUser.uid)
             .set(user)
             .addOnSuccessListener {
-                Toast.makeText(
-                    this,
-                    "¡Perfil creado exitosamente!",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Log.d("UserTypeSelection", "Profile saved successfully")
+                Toast.makeText(this, "¡Perfil creado!", Toast.LENGTH_SHORT).show()
                 navigateToHome(tipoUsuario)
             }
             .addOnFailureListener { e ->
-                Toast.makeText(
-                    this,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_LONG
-                ).show()
+                Log.e("UserTypeSelection", "Error saving profile", e)
+                Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_LONG).show()
             }
     }
 
     private fun navigateToHome(tipoUsuario: TipoUsuario) {
+        Log.d("UserTypeSelection", "Navigating to home for: $tipoUsuario")
+
         val intent = when (tipoUsuario) {
-            TipoUsuario.CLIENTE -> Intent(this, HomeClienteActivity::class.java)
-            TipoUsuario.PROVEEDOR -> Intent(this, HomeProveedorActivity::class.java)
+            TipoUsuario.CLIENTE -> {
+                Log.d("UserTypeSelection", "Starting HomeClienteActivity")
+                Intent(this, HomeClienteActivity::class.java)
+            }
+            TipoUsuario.PROVEEDOR -> {
+                Log.d("UserTypeSelection", "Starting HomeProveedorActivity")
+                Intent(this, HomeProveedorActivity::class.java)
+            }
         }
+
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()

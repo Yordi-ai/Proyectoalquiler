@@ -3,6 +3,7 @@ package com.example.proyectomaquinaria.presentation.proveedor
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.proyectomaquinaria.R
 import com.example.proyectomaquinaria.databinding.ActivityHomeProveedorBinding
@@ -36,7 +37,7 @@ class HomeProveedorActivity : AppCompatActivity() {
                     true
                 }
                 R.id.action_logout -> {
-                    logout()
+                    showLogoutDialog()
                     true
                 }
                 else -> false
@@ -60,12 +61,24 @@ class HomeProveedorActivity : AppCompatActivity() {
                     true
                 }
                 R.id.nav_profile -> {
-                    Toast.makeText(this, "Perfil", Toast.LENGTH_SHORT).show()
+                    // Mostrar diálogo de cerrar sesión cuando toca Perfil
+                    showLogoutDialog()
                     true
                 }
                 else -> false
             }
         }
+    }
+
+    private fun showLogoutDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("Cerrar Sesión")
+            .setMessage("¿Estás seguro que deseas cerrar sesión?")
+            .setPositiveButton("Sí") { _, _ ->
+                logout()
+            }
+            .setNegativeButton("Cancelar", null)
+            .show()
     }
 
     private fun logout() {
@@ -74,5 +87,9 @@ class HomeProveedorActivity : AppCompatActivity() {
         intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         startActivity(intent)
         finish()
+    }
+
+    override fun onBackPressed() {
+        showLogoutDialog()
     }
 }
