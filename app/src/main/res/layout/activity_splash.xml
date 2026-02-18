@@ -13,7 +13,7 @@
         android:id="@+id/imgLogo"
         android:layout_width="180dp"
         android:layout_height="180dp"
-        android:src="@drawable/ic_maquinaria_logo"
+        android:src="@android:drawable/ic_menu_camera"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
