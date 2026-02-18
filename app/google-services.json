@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "912530436441",
+    "project_id": "proyectomaquinaria-b3aa1",
+    "storage_bucket": "proyectomaquinaria-b3aa1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912530436441:android:3cfec37d9f765d6dfb5c48",
+        "android_client_info": {
+          "package_name": "com.example.MaquiRent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDibMDsEshrGFko4ZtqJopzOT_ZugoY7HA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:912530436441:android:ed11e69e477e3927fb5c48",
+        "android_client_info": {
+          "package_name": "com.example.proyectomaquinaria"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDibMDsEshrGFko4ZtqJopzOT_ZugoY7HA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

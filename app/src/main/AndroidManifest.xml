@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <application
+        android:name=".MyApplication"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.ProyectoMaquinaria"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDummy_Key_Replace_Later" />
+
+        <!-- SPLASH SCREEN -->
+        <activity
+            android:name=".presentation.splash.SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- LOGIN ACTIVITY -->
+        <activity
+            android:name=".presentation.auth.LoginActivity"
+            android:exported="false" />
+
+        <!-- MAIN ACTIVITY -->
+        <activity
+            android:name=".presentation.main.MainActivity"
+            android:exported="false" />
+
+        <!-- USER TYPE SELECTION -->
+        <activity
+            android:name=".presentation.auth.UserTypeSelectionActivity"
+            android:exported="false" />
+
+        <!-- HOME CLIENTE -->
+        <activity
+            android:name=".presentation.cliente.HomeClienteActivity"
+            android:exported="false" />
+
+        <!-- HOME PROVEEDOR -->
+        <activity
+            android:name=".presentation.proveedor.HomeProveedorActivity"
+            android:exported="false" />
+
+    </application>
+
+</manifest>

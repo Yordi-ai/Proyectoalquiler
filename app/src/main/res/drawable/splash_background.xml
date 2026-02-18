@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Fondo amarillo -->
+    <item android:drawable="@color/primary_yellow"/>
+
+    <!-- Logo centrado -->
+    <item
+        android:width="180dp"
+        android:height="180dp"
+        android:drawable="@drawable/ic_maquinaria_logo"
+        android:gravity="center"/>
+
+</layer-list>

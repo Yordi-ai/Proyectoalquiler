@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="BottomNavigationTheme">
+        <item name="colorPrimary">@color/orange_accent</item>
+    </style>
+
+    <style name="BottomNavigationThemeProveedor">
+        <item name="colorPrimary">@color/green_provider</item>
+    </style>
+</resources>
