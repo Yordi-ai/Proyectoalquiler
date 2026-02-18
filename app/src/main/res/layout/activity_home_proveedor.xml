@@ -48,6 +48,7 @@
         app:menu="@menu/bottom_nav_proveedor"
         app:itemIconTint="#27AE60"
         app:itemTextColor="#27AE60"
+
         app:labelVisibilityMode="labeled"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
